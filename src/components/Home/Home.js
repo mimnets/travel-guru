@@ -57,18 +57,24 @@ const Home = () => {
         </Card>
 
   <Card className={classes.root}>
+  <CardHeader className={classes.overlay}
+        title="SREEMONGOL"
+        />
             <CardMedia
         className={classes.media}
         image={Sreemongol}
-        title="Paella dish"
+        title="SREEMONGOL"
       />
         </Card>
 
   <Card className={classes.root}>
+  <CardHeader className={classes.overlay}
+        title="SUNDORBON"
+        />
             <CardMedia
         className={classes.media}
         image={Sundorbon}
-        title="Paella dish"
+        title="SUNDORBON"
       />
         </Card>
 </Grid>
