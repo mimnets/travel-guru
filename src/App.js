@@ -8,25 +8,26 @@ import {
   Link
 } from "react-router-dom";
 import Header from './components/Header/Header';
-import bg from './images/Rectangle 1.png';
+import Home from './components/Home/Home';
+import About from './components/About/About';
+import Booking from './components/Booking/Booking';
+
 function App() {
   return (
     <Router>
-      
-      <div>
-       <Header></Header>
+        <Header></Header>
         <Switch>
-          <Route path="/">
-            {/* <About /> */}
+          <Route path="/about">
+            <About />
           </Route>
-          <Route path="/">
-            {/* <Users /> */}
+          <Route path="/booking">
+            <Booking />
           </Route>
-          <Route path="/">
-            {/* <Home /> */}
+          <Route exact path="/">
+            <Home />
           </Route>
         </Switch>
-      </div>
+      
     </Router>
   );
 }
