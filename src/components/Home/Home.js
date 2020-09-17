@@ -4,82 +4,50 @@ import Card from '@material-ui/core/Card';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardActions from '@material-ui/core/CardActions';
 import IconButton from '@material-ui/core/IconButton';
-import Coxbazar from '../../images/Rectangle1.png'; 
-import Sreemongol from '../../images/Sreemongol.png';
-import Sundorbon from '../../images/sundorbon.png'
 import { CardHeader, Grid } from '@material-ui/core';
+import CoxsBazar from '../../images/CoxsBazar.png';
+import Sreemongol from '../../images/Sreemongol.png';
+import Sundorbon from '../../images/Sundorbon.png';
+import TourLocation from '../TourLocation/TourLocation';
+
 const Home = () => {
-    const useStyles = makeStyles((theme) => ({
-        root: {
-          height: 380, 
-          width: 250,
-          flexGrow: 0,
-          margin: 10
+      const style={
+            display: 'flex',
+            margin: '20px',
+            justifyContent:'flex-end'
+      }
+      const tLocation = [
+          {
+              title: "Cox's Bazar",
+              description: "This is cox's bazar, it has a very big and beautiful long beach.",
+              destination:"CoxsBazar",
+              imgUrl: CoxsBazar,
+              rating: '4 star',
+              price: 54
+          },
+          {
+            title: "Sreemongol",
+            description: "This is Sreemongol, it has a very big and beautiful natural and green tea garden.",
+            destination:"Sreemongol",
+            imgUrl: Sreemongol,
+            rating: '4.5 star',
+            price: 59
         },
-        media: {
-          height: '100%',
-          width: '100%',
-        },
-        overlay:{
-            position: 'absolute',
-            paddingTop: 300,
-            stroke: 'bold',
-            color: 'white'
-        },
-        expand: {
-          transform: 'rotate(0deg)',
-          marginLeft: 'auto',
-          paddingLeft:20,
-          transition: theme.transitions.create('transform', {
-            duration: theme.transitions.duration.shortest,
-          }),
-        },
-        expandOpen: {
-          transform: 'rotate(180deg)',
+        {
+            title: "Sundorbon",
+            description: "This is Sundorbon, it has a very big and beautiful mangrove forest.",
+            destination:"Sundorbon",
+            imgUrl: Sundorbon,
+            rating: '4.7 star',
+            price: 60
         }
-      }));
-      const classes = useStyles();
+      ]
     return (
-        
-        
-        <Grid container justify = "flex-end">
-
-        <Card className={classes.root}>
-        <CardHeader className={classes.overlay}
-        title="COX'S BAZAR"
-      />
-            <CardMedia
-        className={classes.media}
-        image={Coxbazar}
-        title="COX'S BAZAR"
-      />
-      
-        </Card>
-
-  <Card className={classes.root}>
-  <CardHeader className={classes.overlay}
-        title="SREEMONGOL"
-        />
-            <CardMedia
-        className={classes.media}
-        image={Sreemongol}
-        title="SREEMONGOL"
-      />
-        </Card>
-
-  <Card className={classes.root}>
-  <CardHeader className={classes.overlay}
-        title="SUNDORBON"
-        />
-            <CardMedia
-        className={classes.media}
-        image={Sundorbon}
-        title="SUNDORBON"
-      />
-        </Card>
-</Grid>
-
-
+        <div style={style}>
+            {
+                tLocation.map(tl => <TourLocation key={tl.destination} tourSpot={tl}></TourLocation>)
+            }
+        </div>
     );
 };
 
