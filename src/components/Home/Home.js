@@ -1,10 +1,4 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardMedia from '@material-ui/core/CardMedia';
-import CardActions from '@material-ui/core/CardActions';
-import IconButton from '@material-ui/core/IconButton';
-import { CardHeader, Grid } from '@material-ui/core';
 import CoxsBazar from '../../images/CoxsBazar.png';
 import Sreemongol from '../../images/Sreemongol.png';
 import Sundorbon from '../../images/Sundorbon.png';
