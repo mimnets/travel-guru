@@ -35,14 +35,14 @@ const useStyles = makeStyles((theme) => ({
 const TourLocation = ({tourSpot}) => {
     const classes = useStyles();
     const history = useHistory()
-    const handleBook = (destination) => {
+    const handleTourSpot = (destination) => {
         history.push(`/spot/${destination}`);
     }  
     return (
         <div>
         <Grid container justify = "flex-end">
 
-        <Card className={classes.root} onClick={() => handleBook(tourSpot.destination)}>
+        <Card className={classes.root} onClick={() => handleTourSpot(tourSpot.destination)}>
             <CardHeader className={classes.overlay}
             title={tourSpot.title}
             />

@@ -13,6 +13,8 @@ import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 import Spot from './components/Spot/Spot';
 import Login from './components/Login/Login';
 
+
+
 export const UserContext = createContext();
 
 function App() {
@@ -20,7 +22,7 @@ function App() {
   return (
     <UserContext.Provider value={[loggedInUser, setLoggedInUser]}>
     <Router>
-        <Header></Header>
+        <Header />
         <Switch>
           <Route path="/home">
             <Home />
