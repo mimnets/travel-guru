@@ -2,17 +2,37 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
-import Divider from '@material-ui/core/Divider';
-import { Grid } from '@material-ui/core';
+import Card from '@material-ui/core/Card';
+import CardHeader from '@material-ui/core/CardHeader';
+import CardMedia from '@material-ui/core/CardMedia';
+import CardContent from '@material-ui/core/CardContent';
+import CardActions from '@material-ui/core/CardActions';
+import IconButton from '@material-ui/core/IconButton';
+import Typography from '@material-ui/core/Typography';
+import { red } from '@material-ui/core/colors';
 
 const useStyles = makeStyles((theme) => ({
   container: {
     display: 'flex',
+    justifyContent: 'center',
+    
   },
   textField: {
     marginLeft: theme.spacing(1),
     marginRight: theme.spacing(1),
     width: 200,
+  },
+  root: {
+    maxWidth: 345,
+  media: {
+    height: 0,
+    paddingTop: '56.25%', // 16:9
+  },
+
+  '& .MuiTextField-root': {
+        margin: theme.spacing(1),
+        width: '25ch',
+  },
   },
 }));
 
@@ -32,16 +52,38 @@ const date =
 const materialDateInput = `${year}-${month}-${date}`; // combining to format for defaultValue or value attribute of material <TextField>
 
 const Booking = () => {
+
     const {destination} = useParams();
     const classes = useStyles();
     return (
         <div className={classes.container}>
-            
-            <form className={classes.container} noValidate>
-            <TextField label="Origin" value="Dhaka" className={classes.textField}/>
-                <TextField label="Destination" value={destination}/>
-                
-                <TextField
+
+            <form className={classes.root} noValidate autoComplete="off">
+      <div>
+        
+      <TextField
+          disabled
+          id="outlined-disabled"
+          label="Origin"
+          defaultValue="Dhaka"
+          variant="outlined"
+        />
+        
+      </div>
+      <div>
+    
+      <TextField
+          disabled
+          id="outlined-disabled"
+          label="Destination"
+          defaultValue={destination}
+          variant="outlined"
+        />
+        
+      </div>
+      <div>
+        
+      <TextField
                     id="date"
                     label="Form"
                     type="date"
@@ -61,8 +103,15 @@ const Booking = () => {
                     shrink: true,
                     }}
                 />
-                <button>Start Booking</button>
-            </form>
+        
+      </div>
+      <div>
+        
+      <button>Start Booking</button>
+        
+      </div>
+    </form>
+
         </div>
     );
 };
