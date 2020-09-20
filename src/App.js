@@ -13,6 +13,7 @@ import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 import Spot from './components/Spot/Spot';
 import Login from './components/Login/Login';
 import Booking from './components/Booking/Booking';
+import RoomSearch from './components/RoomSearch/RoomSearch';
 
 
 export const UserContext = createContext();
@@ -37,8 +38,8 @@ function App() {
             <Route path="/booking/:destination">
               <Booking />
             </Route>
-          {/* <PrivateRoute path="/spot/:destination">
-              <Spot />
+          {/* <PrivateRoute path="/searchRoom/:destination">
+              <RoomSearch />
             </PrivateRoute> */}
           <Route exact path="/">
             <Home />

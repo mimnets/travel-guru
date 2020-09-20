@@ -1,15 +1,8 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
-import Card from '@material-ui/core/Card';
-import CardHeader from '@material-ui/core/CardHeader';
-import CardMedia from '@material-ui/core/CardMedia';
-import CardContent from '@material-ui/core/CardContent';
-import CardActions from '@material-ui/core/CardActions';
-import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
-import { red } from '@material-ui/core/colors';
+
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -55,6 +48,10 @@ const Booking = () => {
 
     const {destination} = useParams();
     const classes = useStyles();
+    const history = useHistory();
+    const submitBooking = (destination) => {
+        history.push(`/seachRoom/${destination}`)
+    }
     return (
         <div className={classes.container}>
 
@@ -107,7 +104,7 @@ const Booking = () => {
       </div>
       <div>
         
-      <button>Start Booking</button>
+      <button onClick={() => {submitBooking(destination)}}>Start Booking</button>
         
       </div>
     </form>
