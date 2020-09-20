@@ -2,6 +2,7 @@ import React from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
+import { Button } from '@material-ui/core';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -50,7 +51,7 @@ const Booking = () => {
     const classes = useStyles();
     const history = useHistory();
     const submitBooking = (destination) => {
-        history.push(`/seachRoom/${destination}`)
+        history.push(`/seach/${destination}`)
     }
     return (
         <div className={classes.container}>
@@ -104,7 +105,7 @@ const Booking = () => {
       </div>
       <div>
         
-      <button onClick={() => {submitBooking(destination)}}>Start Booking</button>
+      <Button onClick={() => {submitBooking(destination)}}>Start Booking</Button>
         
       </div>
     </form>

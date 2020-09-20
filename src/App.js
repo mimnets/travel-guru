@@ -29,15 +29,18 @@ function App() {
           <Route path="/login">
             <Login />
           </Route>
+          <Route path="/search">
+            <SearchRoom />
+          </Route>
           <Route path="/spot/:destination">
               <Spot />
             </Route>
             <Route path="/booking/:destination">
               <Booking />
             </Route>
-          <PrivateRoute path="/searchRoom/:destination">
+          {/* <PrivateRoute path="/search/:destination">
               <SearchRoom />
-            </PrivateRoute>
+            </PrivateRoute> */}
           <Route exact path="/">
             <Home />
           </Route>
