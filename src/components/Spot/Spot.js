@@ -12,7 +12,7 @@ const Spot = () => {
     }
     return (
         <div style={{backgroundImage:`url(${imgUrl})`,backgroundSize: 'cover',
-        overflow: 'hidden'}}> 
+         height:'500px'}}> 
             <h1>Title:{destination}</h1>
             <p>{description}</p>
             <button onClick={() => {handleBooking(destination)}}>Booking</button>
