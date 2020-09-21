@@ -38,9 +38,9 @@ function App() {
             <Route path="/booking/:destination">
               <Booking />
             </Route>
-          {/* <PrivateRoute path="/search/:destination">
+          <PrivateRoute path="/search/:destination">
               <SearchRoom />
-            </PrivateRoute> */}
+            </PrivateRoute>
           <Route exact path="/">
             <Home />
           </Route>

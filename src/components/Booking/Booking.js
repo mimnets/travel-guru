@@ -1,5 +1,5 @@
 import React from 'react';
-import { useHistory, useParams } from 'react-router-dom';
+import { useHistory, useLocation, useParams } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import { Button } from '@material-ui/core';
@@ -51,7 +51,7 @@ const Booking = () => {
     const classes = useStyles();
     const history = useHistory();
     const submitBooking = (destination) => {
-        history.push(`/seach/${destination}`)
+        history.push(`/search/${destination}`)
     }
     return (
         <div className={classes.container}>

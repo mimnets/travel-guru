@@ -18,17 +18,6 @@ const useStyles = makeStyles((theme) => ({
         paddingTop: 300,
         stroke: 'bold',
         color: 'white'
-    },
-    expand: {
-      transform: 'rotate(0deg)',
-      marginLeft: 'auto',
-      paddingLeft:20,
-      transition: theme.transitions.create('transform', {
-        duration: theme.transitions.duration.shortest,
-      }),
-    },
-    expandOpen: {
-      transform: 'rotate(180deg)',
     }
   }));
 
