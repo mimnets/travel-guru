@@ -29,9 +29,6 @@ function App() {
           <Route path="/login">
             <Login />
           </Route>
-          <Route path="/search">
-            <SearchRoom />
-          </Route>
           <Route path="/spot/:destination">
               <Spot />
             </Route>
