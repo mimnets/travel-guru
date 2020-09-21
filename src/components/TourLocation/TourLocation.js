@@ -18,31 +18,20 @@ const useStyles = makeStyles((theme) => ({
         paddingTop: 300,
         stroke: 'bold',
         color: 'white'
-    },
-    expand: {
-      transform: 'rotate(0deg)',
-      marginLeft: 'auto',
-      paddingLeft:20,
-      transition: theme.transitions.create('transform', {
-        duration: theme.transitions.duration.shortest,
-      }),
-    },
-    expandOpen: {
-      transform: 'rotate(180deg)',
     }
   }));
 
 const TourLocation = ({tourSpot}) => {
     const classes = useStyles();
     const history = useHistory()
-    const handleBook = (destination) => {
+    const handleTourSpot = (destination) => {
         history.push(`/spot/${destination}`);
     }  
     return (
         <div>
         <Grid container justify = "flex-end">
 
-        <Card className={classes.root} onClick={() => handleBook(tourSpot.destination)}>
+        <Card className={classes.root} onClick={() => handleTourSpot(tourSpot.destination)}>
             <CardHeader className={classes.overlay}
             title={tourSpot.title}
             />
