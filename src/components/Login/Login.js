@@ -37,25 +37,7 @@ const Login = () => {
     const history = useHistory();
     const location = useLocation();
     const { from } = location.state || { from: { pathname: "/" } };
-    if (firebase.apps.length === 0) {
-        firebase.initializeApp(firebaseConfig);
-    }
 
-
-    const handleGoogleSignIn = () => {
-        const googleSignInprovider = new firebase.auth.GoogleAuthProvider();
-        firebase.auth().signInWithPopup(googleSignInprovider)
-            .then(function (result) {
-                const { displayName, email } = result.user;
-                const signedInUser = { name: displayName, email };
-                setLoggedInUser(signedInUser);
-                history.replace(from);
-                // ...
-            }).catch(function (error) {
-                const errorMessage = error.message;
-                console.log(errorMessage);
-            });
-    }
     return (
 
         <div style={{display:'flex', justifyContent:'center'}}>
