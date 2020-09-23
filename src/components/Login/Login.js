@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import * as firebase from "firebase/app";
 import "firebase/auth";
 import firebaseConfig from './firebase.config';
@@ -11,6 +11,7 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { Grid } from '@material-ui/core';
+import {loginFrameworkInitialization} from './LoginInfo';
 
 const useStyles = makeStyles({
     root: {
@@ -33,10 +34,21 @@ const useStyles = makeStyles({
 
 const Login = () => {
     const classes = useStyles();
+    const [newUser, setNewUser] = useState(false);
+    const [user, setUser] = useState({
+        isSignedIn: false,
+        name:'',
+        email:'',
+        photoURL: '',
+        password:''
+    });
+
+    loginFrameworkInitialization();
+
     const [loggedInUser, setLoggedInUser] = useContext(UserContext);
     const history = useHistory();
     const location = useLocation();
-    const { from } = location.state || { from: { pathname: "/" } };
+    let { from } = location.state || { from: { pathname: "/" } };
 
     return (
 
