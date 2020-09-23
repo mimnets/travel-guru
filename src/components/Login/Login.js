@@ -4,37 +4,82 @@ import "firebase/auth";
 import firebaseConfig from './firebase.config';
 import { UserContext } from '../../App';
 import { useHistory, useLocation } from 'react-router-dom';
+import { makeStyles } from '@material-ui/core/styles';
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
+import { Grid } from '@material-ui/core';
 
+const useStyles = makeStyles({
+    root: {
+        display: 'flex',
+        minWidth: 275,
+
+    },
+    bullet: {
+        display: 'inline-block',
+        margin: '0 2px',
+        transform: 'scale(0.8)',
+    },
+    title: {
+        fontSize: 14,
+    },
+    pos: {
+        marginBottom: 12,
+    },
+});
 
 const Login = () => {
+    const classes = useStyles();
     const [loggedInUser, setLoggedInUser] = useContext(UserContext);
     const history = useHistory();
     const location = useLocation();
-    const { from } = location.state || { from: { pathname: "/"}};
-    if(firebase.apps.length === 0){
+    const { from } = location.state || { from: { pathname: "/" } };
+    if (firebase.apps.length === 0) {
         firebase.initializeApp(firebaseConfig);
     }
-    
+
 
     const handleGoogleSignIn = () => {
         const googleSignInprovider = new firebase.auth.GoogleAuthProvider();
         firebase.auth().signInWithPopup(googleSignInprovider)
-    .then(function(result) {
-        const {displayName, email} = result.user;
-        const signedInUser = {name: displayName, email};
-        setLoggedInUser(signedInUser);
-        history.replace(from);
-        // ...
-      }).catch(function(error) {
-          const errorMessage = error.message;
-          console.log(errorMessage);
-      });
+            .then(function (result) {
+                const { displayName, email } = result.user;
+                const signedInUser = { name: displayName, email };
+                setLoggedInUser(signedInUser);
+                history.replace(from);
+                // ...
+            }).catch(function (error) {
+                const errorMessage = error.message;
+                console.log(errorMessage);
+            });
     }
     return (
-        
-        <div>
-            <h1>This is Login</h1>
-            <button onClick={handleGoogleSignIn}>Google Sign in</button>
+
+        <div style={{display:'flex', justifyContent:'center'}}>
+            
+                <Card className={classes.root}>
+                    <CardContent>
+                        <Typography className={classes.title} color="textSecondary" gutterBottom>
+                            Word of the Day
+                            </Typography>
+                        <Typography variant="h5" component="h2">
+
+                        </Typography>
+                        <Typography className={classes.pos} color="textSecondary">
+                            adjective
+                        </Typography>
+                        <Typography variant="body2" component="p">
+                            well meaning and kindly.
+                        </Typography>
+                        <Typography variant="body2" component="p">
+                        <Button onClick={handleGoogleSignIn}>Google Sign in</Button>
+                        </Typography>
+                    </CardContent>
+                </Card>
+                
         </div>
     );
 };
