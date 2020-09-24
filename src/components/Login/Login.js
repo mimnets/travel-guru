@@ -9,7 +9,7 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { FormControl, FormHelperText, Grid, Input, InputLabel } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
-import {loginFrameworkInitialization, handleGoogleSignIn, handleFBSignIn, createUserWithEmailAndPass} from './LoginInfo';
+import {loginFrameworkInitialization, handleGoogleSignIn, handleFBSignIn, createUserWithEmailAndPass, signInWithEmailAndPass} from './LoginInfo';
 
 const useStyles = makeStyles({
     root: {
@@ -78,11 +78,17 @@ const Login = () => {
         newUserInfo[event.target.name] = event.target.value;
         setUser(newUserInfo);
     }
-    
+
     const handleSubmit = (event) => {
         console.log(user.email,user.password);
         if(newUser && user.email && user.password){
             createUserWithEmailAndPass(user.name, user.email, user.password)
+            .then(res => {
+            handleResponse(res, true);
+        })
+        }
+        if(!newUser && user.email && user.password){
+            signInWithEmailAndPass(user.email, user.password)
             .then(res => {
             handleResponse(res, true);
         })

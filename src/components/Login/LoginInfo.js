@@ -64,6 +64,22 @@ export const createUserWithEmailAndPass = (name, email, password) => {
           });
     }
 
+export const signInWithEmailAndPass = (email, password) => {
+    return firebase.auth().signInWithEmailAndPassword(email, password)
+    .then(res =>{
+        const newUserInfo = res.user;
+        newUserInfo.error = '';
+        newUserInfo.success = true;
+        return newUserInfo;
+    })
+    .catch(error => {
+        const newUserInfo = {};
+        newUserInfo.error = error.message;
+        newUserInfo.success = false;
+        return newUserInfo;
+    })
+}
+
     const updateUserName = name => {
         const user = firebase.auth().currentUser;
             user.updateProfile({
