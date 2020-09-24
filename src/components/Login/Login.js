@@ -11,7 +11,7 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { Grid } from '@material-ui/core';
-import {loginFrameworkInitialization} from './LoginInfo';
+import {loginFrameworkInitialization, handleGoogleSignIn, handleFBSignIn} from './LoginInfo';
 
 const useStyles = makeStyles({
     root: {
@@ -50,6 +50,30 @@ const Login = () => {
     const location = useLocation();
     let { from } = location.state || { from: { pathname: "/" } };
 
+    const googleSignIn =() => {
+        handleGoogleSignIn()
+        .then(res => {
+            handleResponse(res, true); // Required for login redirects
+        })
+    }
+
+    // handleResponse need to declare as below :
+    // handleResponse start
+    const handleResponse = (res, redirect) =>{
+        setUser(res);
+        setLoggedInUser(res);
+        if(redirect){
+            history.replace(from);
+        }
+    }
+    // handleResponse end
+
+    const fbSignIn = () => {
+        handleFBSignIn()
+        .then(res => {
+            handleResponse(res,true);
+        })
+    }
     return (
 
         <div style={{display:'flex', justifyContent:'center'}}>
@@ -69,11 +93,13 @@ const Login = () => {
                             well meaning and kindly.
                         </Typography>
                         <Typography variant="body2" component="p">
-                        <Button onClick={handleGoogleSignIn}>Google Sign in</Button>
+                        <Button onClick={googleSignIn}>Google Sign in</Button>
+                        <Button onClick={fbSignIn}>Facebook Sign in</Button>
                         </Typography>
                     </CardContent>
                 </Card>
-                
+
+
         </div>
     );
 };
