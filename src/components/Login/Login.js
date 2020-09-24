@@ -7,7 +7,7 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import { Grid } from '@material-ui/core';
+import { FormControl, FormHelperText, Grid, Input, InputLabel } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
 import {loginFrameworkInitialization, handleGoogleSignIn, handleFBSignIn, createUserWithEmailAndPass} from './LoginInfo';
 
@@ -72,7 +72,15 @@ const Login = () => {
             handleResponse(res,true);
         })
     }
+
+    const handleBlur = (event) => {
+        const newUserInfo = {...user};
+        newUserInfo[event.target.name] = event.target.value;
+        setUser(newUserInfo);
+    }
+    
     const handleSubmit = (event) => {
+        console.log(user.email,user.password);
         if(newUser && user.email && user.password){
             createUserWithEmailAndPass(user.name, user.email, user.password)
             .then(res => {
@@ -81,21 +89,39 @@ const Login = () => {
         }
     event.preventDefault(); 
     }
+
     return (
 
         <div style={{display:'flex', justifyContent:'center'}}>
             
                 <Card className={classes.root}>
                     <CardContent>
+                        <input type="checkbox" onChange={() => setNewUser(!newUser)} name="newUser" id=""/>
+                        <label htmlFor="newUser">New User Sign Up</label>
+                        <form action="" onSubmit={handleSubmit}>
+                            {newUser && <input name="name" type="text" placeholder="Your name" />}
+                            <br/>
+                            <input name="email" type="text" onBlur={handleBlur}placeholder="Your email" required/>
+                            <br/>
+                            <input name="password" type="password" onBlur={handleBlur}placeholder="Your password" required/>
+                            <br/>
+                            <input type="submit" value={newUser ? 'Sign Up' : 'Sign In'}/>
+                        </form>
+                    {/* <FormControl>
+  <InputLabel htmlFor="my-input">Email address</InputLabel>
+  <Input id="my-input" aria-describedby="my-helper-text" />
+  <FormHelperText id="my-helper-text">We'll never share your email.</FormHelperText>
+</FormControl>
                     <form action="" onSubmit={handleSubmit}>
                     <CardContent>
                     
-                    <TextField
+                    {newUser && <TextField
                         id="outlined-disabled"
                         label="Name"
                         defaultValue=""
                         variant="outlined"
                         />
+                    }
                         </CardContent>
                         <CardContent>
                         <TextField
@@ -115,9 +141,9 @@ const Login = () => {
                         />
                         </CardContent>
                         <CardContent>
-                        <Button onClick={() => {handleSubmit()}}>Submit</Button>
+                        <Button>Submit</Button>
                         </CardContent>
-                        </form>
+                        </form> */}
                         {/* <Typography className={classes.title} color="textSecondary" gutterBottom>
                             Word of the Day
                             </Typography>
@@ -132,6 +158,7 @@ const Login = () => {
                         </Typography> */}
                         <Typography variant="body2" component="p">
                         <Button onClick={googleSignIn}>Google Sign in</Button>
+                        <br/>
                         <Button onClick={fbSignIn}>Facebook Sign in</Button>
                         </Typography>
                     </CardContent>
